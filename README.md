@@ -30,6 +30,7 @@ __License MIT__
 
 Some hints taken from:
 https://github.com/nara256/mhz19_uart/blob/master/src/MHZ19_uart.cpp
+https://emariete.com/en/sensor-co2-mh-z19b/#El_sensor_de_CO2_MH-Z19C
 
 
 
@@ -48,4 +49,14 @@ sensor.get_data()
 print('ppm:',    sensor.ppm)
 print('temp:',   sensor.temp)
 print('status:', sensor.co2status)
+```
+
+CALIBRATE IF NEEDED:
+```
+#perform a manual zero point calibration (let it sit at 400pm for 20mins first)
+sensor.calibrate_zero()
+
+#enable/disable automatic zero point calibration, which depends on a daily drop
+#to 400ppm to work
+sensor.set_auto_calibrate_zero(True)
 ```
