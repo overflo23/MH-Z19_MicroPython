@@ -69,6 +69,17 @@ class mhz19:
             self.co2status = ord(chr(s[5]))
             return 1
 
+    def set_auto_calibrate_zero(self, enable):
+        if enable:
+            msg = b'\xff\x01\x79\xa0\x00\x00\x00\x00\xe6'
+        else:
+            msg = b'\xff\x01\x79\x00\x00\x00\x00\x00\x86'
+        self.uart.write(msg)
+
+    def calibrate_zero(self):
+        msg = b'\xff\x01\x87\x00\x00\x00\x00\x00\x78'
+        self.uart.write(msg)
+
     def crc8(self, a):
         crc = 0x00
         count = 1
